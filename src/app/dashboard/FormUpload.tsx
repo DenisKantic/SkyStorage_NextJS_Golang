@@ -23,8 +23,8 @@ export default function FormUpload() {
   return (
     <>
      <form onSubmit={handleSubmit} className='flex gap-10 '>
-            <input type="file" name="file" className='w-full btn flex items-center justify-center btn-primary' placeholder='insert file' /> <br />
-             <button type='submit' className='btn btn-info w-[50%]'>Upload</button>
+            <input type="file" name="file" className='w-full h-full p-3  btn btn-primary'/> 
+             <button type='submit' className='btn btn-info p-4 w-[50%]'>Upload</button>
         </form>
         </>
   )

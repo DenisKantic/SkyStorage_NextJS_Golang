@@ -1,4 +1,6 @@
 import React from 'react'
+import Image from 'next/image'
+import userImage from "../../../public/images/user.png"
 
 const Navbar = () => {
   return (
@@ -13,9 +15,11 @@ const Navbar = () => {
       <div className="dropdown dropdown-end -">
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
-            <img
+            <Image
               alt="Tailwind CSS Navbar component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              src={userImage}
+              height={50}
+              width={50} />
           </div>
         </div>
         <ul
