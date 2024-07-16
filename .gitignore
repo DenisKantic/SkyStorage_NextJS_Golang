@@ -30,7 +30,7 @@ yarn-error.log*
 .env
 
 # database 
-
+backend/db_files
 
 # vercel
 .vercel
