@@ -169,7 +169,7 @@ const downloadFiles = async (id:number, filetype:string)=>{
              {/* row 1 */}
         {files.map((file) => (       
              <tr key={file.id}>
-               <td className='flex items-center'><p className='mr-5'>{getFileIcon(file.filename)}</p>{file.filename.substring(0,30)}</td>
+               <td className='flex items-center'><span className='mr-5'>{getFileIcon(file.filename)}</span>{file.filename.substring(0,30)}</td>
                <td>{getFileExtension(file.filename)}</td>
                <td>{bytesToGB(file.filesize)}</td>
                <td>{file.uploaded_at.toDateString()}</td>
