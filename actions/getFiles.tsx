@@ -22,6 +22,7 @@ export async function getFiles(): Promise<File[]>{
         // Exclude filecontent
       },
     });
+    
 
     return files;
 

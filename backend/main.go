@@ -200,7 +200,7 @@ func deleteFiles(w http.ResponseWriter, r *http.Request) {
 func downloadFile(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	w.Header().Set("Access-Control-Allow-Methods", "GET")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Disposition")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 	if r.Method == http.MethodOptions {
 		return
@@ -237,19 +237,27 @@ func downloadFile(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error retrieving file from database: %v", err)
 		return
 	}
-	// Get base filename from the full filename path
-	//baseFilename := path.Base(filename)
 
-	w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%q", filename))
-	w.Header().Set("Content-Type", "application/octet-stream")
+	// extract file extension from filename for MIME types
+	//ext := pf.Ext(filename)
+	//if ext == "" {
+	//	http.Error(w, "File extension not found", http.StatusInternalServerError)
+	//	fmt.Println("File extension not found")
+	//	log.Printf("File extension not found for filename: %s", filename)
+	//	return
+	//}
+	//
+	//fmt.Println("file is found", ext)
+	//fmt.Fprintf(w, "File extension is %s", ext)
+	// Get MIME type by extension
+	//mimeType := mime.TypeByExtension(ext)
+	//if mimeType == "" {
+	//	http.Error(w, "Unknown MIME type", http.StatusInternalServerError)
+	//	log.Printf("Uknown MIME type: %s", ext)
+	//	return
+	//}
+	//fmt.Println("mime type is:", mimeType)
 
-	message := fmt.Sprintf(filename)
-
-	response := Response{
-		Message: message,
-	}
-
-	json.NewEncoder(w).Encode(response)
 	http.ServeFile(w, r, filepath)
 }
 
@@ -266,6 +274,7 @@ func setupRoutes() {
 }
 
 func main() {
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file")
